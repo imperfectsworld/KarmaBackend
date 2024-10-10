@@ -4,6 +4,19 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200/",
+            "https://white-beach-015cbaf0f.5.azurestaticapps.net/").AllowAnyMethod().AllowAnyHeader();
+        });
+});
+
+
+
 // Add services to the container.
 
 // Add HttpClient for making API requests
