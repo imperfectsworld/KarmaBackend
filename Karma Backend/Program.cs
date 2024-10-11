@@ -9,11 +9,23 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
         policy =>
-        {
-            policy.WithOrigins("http://localhost:4200/",
-            "https://white-beach-015cbaf0f.5.azurestaticapps.net/").AllowAnyMethod().AllowAnyHeader();
+        {                       
+            policy.WithOrigins("http://localhost:4200",
+            "https://white-beach-015cbaf0f.5.azurestaticapps.net").AllowAnyMethod().AllowAnyHeader();
         });
 });
+
+
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowAll", builder =>
+//    {
+//        builder.AllowAnyOrigin()
+//               .AllowAnyMethod()
+//               .AllowAnyHeader();
+//    });
+//});
+
 
 
 
@@ -59,5 +71,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();
