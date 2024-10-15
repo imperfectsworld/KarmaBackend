@@ -1,6 +1,7 @@
 using Karma_Backend.Models;
 using Karma_Backend.Services;
 using Microsoft.EntityFrameworkCore;
+using Karma_Backend.Hub;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services.AddCors(options =>
         policy =>
         {                       
             policy.WithOrigins("http://localhost:4200",
-            "https://white-beach-015cbaf0f.5.azurestaticapps.net").AllowAnyMethod().AllowAnyHeader();
+            "https://white-beach-015cbaf0f.5.azurestaticapps.net").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
         });
 });
 
@@ -30,6 +31,13 @@ builder.Services.AddCors(options =>
 
 
 // Add services to the container.
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR();
+builder.Services.AddSingleton<IDictionary<string, UserRoomConnection>>(IServiceProvider =>
+new Dictionary<string, UserRoomConnection>());
 
 // Add HttpClient for making API requests
 builder.Services.AddHttpClient();
@@ -48,16 +56,13 @@ builder.Services.AddSingleton<GeocodingService>(provider =>
 
 // Register LocationService
 builder.Services.AddScoped<LocationService>();
-
+var app = builder.Build();
 // Add controllers
 
-builder.Services.AddControllers();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -67,13 +72,18 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors();
+app.UseRouting();
 app.UseAuthorization();
+app.UseEndpoints(endpoint =>
+{
+    endpoint.MapHub<ChatHub>("/chat");
+});
 
 app.MapControllers();
 
 app.UseStaticFiles();
 
-app.UseCors();
+
 
 app.Run();
