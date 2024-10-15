@@ -30,6 +30,26 @@ namespace Karma_Backend.Controllers
             return Created("Not Implemented", newItem);
 
         }
+
+        //[HttpPost("ItemWithImage")]
+        //public async Task<IActionResult> AddItemWithImage([FromForm] ItemCreateDTO itemDto)
+        //{
+        //    if (itemDto.file != null && itemDto.file.Length > 0)
+        //    {
+        //        var fileName = Path.GetFileName(itemDto.file.FileName);
+        //        var filePath = Path.Combine("YourFileStoragePath", fileName);
+
+        //        using (var stream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            await itemDto.file.CopyToAsync(stream);
+        //        }
+        //        itemDto.item.Pic = filePath;
+        //    }
+        //    _context.Items.Add(itemDto.item);
+        //    await _context.SaveChangesAsync();
+
+        //    return Ok(itemDto.item);
+        //}
     }
 
 }
