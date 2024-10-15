@@ -17,19 +17,6 @@ builder.Services.AddCors(options =>
 });
 
 
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("AllowAll", builder =>
-//    {
-//        builder.AllowAnyOrigin()
-//               .AllowAnyMethod()
-//               .AllowAnyHeader();
-//    });
-//});
-
-
-
-
 // Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -81,9 +68,5 @@ app.UseEndpoints(endpoint =>
 });
 
 app.MapControllers();
-
-app.UseStaticFiles();
-
-
 
 app.Run();
