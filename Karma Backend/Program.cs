@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
         policy =>
         {                       
             policy.WithOrigins("http://localhost:4200",
-            "https://white-beach-015cbaf0f.5.azurestaticapps.net").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+            "https://green-sand-0fc2ba30f.5.azurestaticapps.net").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
         });
 });
 

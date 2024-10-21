@@ -107,10 +107,7 @@ namespace Karma_Backend.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error uploading image: {ex.Message}");
             }
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> 76f13c37500e5ff5df64e78a094c80171b59bf69
         [HttpDelete("{id}")]
         public IActionResult DeleteItem(int id)
         {
@@ -126,10 +123,7 @@ namespace Karma_Backend.Controllers
                 return NoContent();
             }
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> 76f13c37500e5ff5df64e78a094c80171b59bf69
     }
 
 }
