@@ -14,7 +14,7 @@ namespace Karma_Backend.Services
             _geocodingService = geocodingService;
         }
 
-        public async Task SaveLocationAsync(string address)
+        public async Task<Location> SaveLocationAsync(string address)
         {
             // Get the geocode (latitude and longitude) from the API
             var (latitude, longitude) = await _geocodingService.GetGeocodeAsync(address);
@@ -30,6 +30,7 @@ namespace Karma_Backend.Services
             // Save the location to the database
             _dbContext.Locations.Add(location);
             await _dbContext.SaveChangesAsync();
+            return location;
         }
         public async Task<List<Location>> GetAll()
         {

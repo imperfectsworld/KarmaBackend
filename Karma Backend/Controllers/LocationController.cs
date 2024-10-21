@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Karma_Backend.Services;
+using Karma_Backend.Models;
 namespace Karma_Backend.Controllers
 {
     [Route("api/[controller]")]
@@ -37,8 +38,9 @@ namespace Karma_Backend.Controllers
 
             try
             {
-                await _locationService.SaveLocationAsync(addressDto.Address);
-                return Ok("Location saved successfully.");
+                Location result = await _locationService.SaveLocationAsync(addressDto.Address);
+                return Ok(result);
+                //return Ok("Location saved successfully.");
             }
             catch (Exception ex)
             {

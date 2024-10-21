@@ -106,6 +106,21 @@ namespace Karma_Backend.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error uploading image: {ex.Message}");
             }
         }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteItem(int id)
+        {
+            Item result = dbContext.Items.FirstOrDefault(p => p.Id == id);
+            if (result == null)
+            {
+                return NotFound("No matching id");
+            }
+            else
+            {
+                dbContext.Items.Remove(result);
+                dbContext.SaveChanges();
+                return NoContent();
+            }
+        }
     }
 
 }
