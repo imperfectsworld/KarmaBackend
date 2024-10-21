@@ -19,6 +19,9 @@ builder.Services.AddCors(options =>
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+
+builder.Services.AddScoped<ImgurService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -44,6 +47,7 @@ builder.Services.AddSingleton<GeocodingService>(provider =>
 // Register LocationService
 builder.Services.AddScoped<LocationService>();
 var app = builder.Build();
+
 // Add controllers
 
 

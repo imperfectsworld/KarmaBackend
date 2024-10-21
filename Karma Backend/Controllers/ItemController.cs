@@ -26,6 +26,7 @@ namespace Karma_Backend.Controllers
         [HttpGet()]
         public IActionResult GetAll()
         {
+            //entity framework is used here to call items from the items table
             List<Item> result = dbContext.Items.Include(p => p.Google).ToList();
             return Ok(result);
         }
@@ -90,7 +91,7 @@ namespace Karma_Backend.Controllers
                 var responseBody = await response.Content.ReadAsStringAsync();
                 var responseJson = JObject.Parse(responseBody);
                 var imageUrl = responseJson["data"]["link"].ToString();
-
+                //saving 3rd party API data - saves image url
                 var item = new Item
                 {
                     Pic = imageUrl,
