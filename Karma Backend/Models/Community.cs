@@ -10,6 +10,5 @@ public partial class Community
 
     public int? ZipCode { get; set; }
     [JsonIgnore]
-
     public virtual ICollection<User> Users { get; set; } = new List<User>();
 }

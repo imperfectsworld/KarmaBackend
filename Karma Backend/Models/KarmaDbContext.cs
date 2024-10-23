@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 
 namespace Karma_Backend.Models;
@@ -25,7 +26,7 @@ public partial class KarmaDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=karmabook.database.windows.net;Initial Catalog=KarmaDb;User Id=Karma;Password=ADD$$devs;Encrypt=false;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer(Secret.ConnectionString);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -96,6 +97,9 @@ public partial class KarmaDbContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("googleID");
             entity.Property(e => e.CommunityId).HasColumnName("communityId");
+            entity.Property(e => e.Email)
+                .HasMaxLength(400)
+                .HasColumnName("email");
             entity.Property(e => e.ProfilePic)
                 .HasMaxLength(255)
                 .HasColumnName("profilePic");

@@ -14,6 +14,8 @@ public partial class User
 
     public int? CommunityId { get; set; }
 
+    public string? Email { get; set; }
+
     [JsonIgnore]
     public virtual Community? Community { get; set; }
     [JsonIgnore]
