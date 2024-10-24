@@ -1,4 +1,4 @@
-# WeeGive **[Visit the site here](https://green-sand-0fc2ba30f.5.azurestaticapps.net/)**
+# **[WeeGive](https://green-sand-0fc2ba30f.5.azurestaticapps.net/)**
 <p align="center">
   <img src="https://github.com/user-attachments/assets/22a511a2-5f9b-4ff3-a7eb-0c88dd350f41" alt="weegive_720" width="400"/>
   <img src="https://github.com/user-attachments/assets/27376fa9-7984-4849-abbb-4f2d751b43ba" alt="screenshot_2024-10-24_163812_720" width="400"/>
